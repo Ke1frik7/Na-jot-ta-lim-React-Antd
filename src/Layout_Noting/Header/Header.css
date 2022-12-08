@@ -1,0 +1,14 @@
+.nav__ul{
+    width: 100%;
+    /* width: 50%; */
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+a{
+    font-size: 17px;
+    color: #fff;
+}
+.users{
+    font-size: 15px;
+}

@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css"
+import {Utgan} from "./Utgan";
+import { Utmagan } from "./Utmagan";
+import {useState, useEffect} from "react"
+import { Context } from "./Context/Context";
 function App() {
+  let parses = window.localStorage.getItem("erkin")
+  const [token, setToken] = useState(parses !== null? JSON.parse(parses): null)
+  const [collapsed, setCollapsed] = useState(false)
+  useEffect(() => {
+    if(token !== null){
+      window.localStorage.setItem("erkin", JSON.stringify(token))
+    }
+  }, [token])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Context.Provider value={{token, setToken, collapsed, setCollapsed}}>
+      {token !== null ? <Utgan/>: <Utmagan/>}
+      </Context.Provider>      
     </div>
   );
 }
-
 export default App;
